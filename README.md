@@ -51,8 +51,7 @@ Datsesets extracted from URA website: https://www.ura.gov.sg/realEstateIIWeb/tra
 
 - The tenure utimately show skewness of the dataset both right and left side, the red line was draw to shift out the =<99 years lease tenure houses.
 
-# INSERT IMG HERE
-![](https://git.generalassemb.ly/martinyong/Project4/blob/master/img/num_mosqitoes_2007.png)
+![](https://github.com/huangjx1/Capstone-Final-/blob/main/img/tenure%20999%20and%2099.PNG)
 
 - A box plot of hosue type was drawn and there seems to be not much difference. The feature was also dummified to be included into the modelling portion
 
@@ -69,8 +68,7 @@ Linear regression was used and the there were no overfit. However, the accuracy 
 XGboost and Random Forest Regressor  was used, all of the model was overfitted and a change of y features to overall price is required since areasq is a feature we can cosnider.
 
 
-# Insert IMG
-
+![](https://github.com/huangjx1/Capstone-Final-/blob/main/img/price%20per%20psf.PNG)
 
 merged_house1, we used the unit price psf to remove certain abnormal high prices and low prices
 
@@ -88,8 +86,8 @@ XGBoost and Random Forest regressor both shows great imporvement in accuracy and
 
 With merged_house1, we removed 2.5% of the higest and 2.5% of the lowest price as a bar graph was draw to show a skewness of the price difference from left to right
 
-# Insert img
-# Insert img
+![](https://github.com/huangjx1/Capstone-Final-/blob/main/img/Prices%20of%20house%20without%205%25%20removal.PNG)
+![](https://github.com/huangjx1/Capstone-Final-/blob/main/img/Prices%20of%20house%20with%205%25%20removal.PNG)
 
 Linear Regression, XGboost and Random Forest Regressor was used and linear regression show an accuracy for 0.85 with a slight overfitof >2% and a RMSE of$110494
 
