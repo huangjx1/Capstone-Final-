@@ -1,4 +1,4 @@
-index,Project Name,Street Name,Type,Postal District,Market Segment,Tenure,Type of Sale,No. of Units,Price ($),Nett Price ($),Area (Sqft),Type of Area,Floor Level,Unit Price ($psf),Date of Sale
+index,project name,street name,type,postal district,market segment,tenure,type of sale,no. of units,price,nett price,areasq,type of area,floor level,unit price psf,date of sale
 0,LANDED HOUSING DEVELOPMENT,PASIR PANJANG DRIVE,Terrace,5.0,RCR,Freehold,Resale,1.0,3660000.0,-,2566.0,Land,-,1426.0,Oct-2021
 1,OCEAN 8,OCEAN DRIVE,Terrace,4.0,CCR,99 yrs lease commencing from 2005,Resale,1.0,6920000.0,-,3852.0,Land,-,1796.0,Oct-2021
 2,LANDED HOUSING DEVELOPMENT,OCEAN DRIVE,Detached,4.0,CCR,99 yrs lease commencing from 2005,Resale,1.0,17888000.0,-,8746.0,Land,-,2045.0,Oct-2021
