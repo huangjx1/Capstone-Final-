@@ -61,7 +61,7 @@ A removal of 5% of data from the dataset was carried out to remove outliers dete
 
 The removal of 10% of data was further carried out to remove more outliers as the histogram plot still shows a certain amount of outliers in the 5% removal of data.
 
-[image]
+![](https://github.com/huangjx1/Capstone-Final-/blob/main/img/histogram.png)
 
 ## 4. Data for modelling
 
@@ -118,7 +118,7 @@ The tenure was splitted into 2 category as <=99years and >99 years because of a 
 
 The data was split into 2 category of data using the tenure. The reason for this split is because of the extreme ends of tenurethat was oberserved during the data exploration.
 
-[image]
+![](https://github.com/huangjx1/Capstone-Final-/blob/main/img/scatterplot.png)
 
 
 99year lease -> dataset is named as merged_house99
