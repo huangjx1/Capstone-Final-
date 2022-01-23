@@ -5,6 +5,12 @@
 
 # Problem Statement: To Predict the Prices of private residential properties
 
+In this project, we will be trying to predict the prices of a private residential property. This report will be targeted towards provate investors, stakeholders as well as new home owners. We will be using data science to assist us in finding the optimal sale price for different property types.
+
+This is crucial is it allows homeowners and private investors to make informed decisions before dealing off in real estate.
+
+
+
 There will be 2 notebooks. 
 
 1. The 1st note book named as "Cleaning of Dataset for houses" is to carry out data exploration as well as data cleaning.
@@ -144,3 +150,5 @@ The RMSE is chosen as our main metrics because it punishes predicted value that 
 For the 99 years lease category, we are unable to get an accurate view over it as the RMSE error is abnormal. This could be due to the small dataset extracted out from the actual data. Furthermore, the 99 years lease fall under the same category as HDB estate. Therefore, this could be a reason why the private residential area does not have a sufficient data for the 99 years. As such, the dataset cannot capture the true releationship from the actual and predicted prices.
 
 In additional for 99 years lease category, it would be more logical or objective if it is compared to the HDB estate as the tenure will fall under the same category.
+
+Overall, this report will only be viable to predict the prices of houses categorized under freehold and not the 99 years lease properties.
