@@ -2,181 +2,145 @@
 
 # Author: Huang Jiexiang
 
-There will be 2 notebooks. 
-
-1st notebook named as "Cleaning of Dataset" - This notebook is to carry out cleaning of the data as well as doing data exploration
-2nd notebook named as "Predicting house prices" - This notebook is to carry out modelling and the predcition of the houserpices.
-
-## Content
-
-1. Problem Statement
-2. Preparation of data and cleaning
-3. Exploratory Data Analysis and cleaning of features
-4. Feature Engineering
-5 & 6. Modelling and evaluation (part 1 and part 2)
-7. Conclusion, recommendation & Next Steps
 
 # Problem Statement: To Predict the Prices of private residential properties
 
+There will be 2 notebooks. 
+
+1. The 1st note book named as "Cleaning of Dataset for houses" is to carry out data exploration as well as data cleaning.
+2. The 2nd notebook named as "Predicting house prices" is to carry out different type of modelling and prediction for house prices using different ML algorithms.
+
+
+# Content for 1st notebook
+
+1. Importing of dataset and preparation
+2. Data Exploration for dataset
+3. Data Cleaning
+4. Data for Modelling
+
+
+## 1. Importing of dataset and preparation
 
 Import of libaries and dataset in csv format.
-
 Datsesets extracted from URA website: https://www.ura.gov.sg/realEstateIIWeb/transaction/search.action
 
+Dataset was concated with renaming of columns names as well as resetting the index so the iloc functions can be used as required.
 
-# 2. Preparation of data and cleaning
+## 2. Data Exploration for dataset
 
-1. The downloaded dataset has text at the beginning and ending of each csv file. The csv file is cleaned from those text.
-2. The csv is concated into a whole dataframe.
-3. Reseting the index for the S/N column is required to index the rows of the dataframe properly. eg. such as when carrying out an iloc command the dataframe should re reflecting the correct row.
-4. checking of the head() and tail() of the dataframe is carried out
-5. Renaming the columns of the datafram eis carriedout for easy typing and referencing of the columns.
-6. The clean data is exported out to a csv file as merged_house.
+Data exploration was carried out on different features as compared to the target variable "price".
+Features there were explored were:
 
+### Market Segment
+The amount of houses located in each region from Core Central Region(CCR), Rest of Central Region(RCR) and Outside of Cnetral Region (OCR). The boxplot gives information that the CCR has quite a number of outliers
 
+### Postal District
+The Postal District indicated to us that area for high prices of houses, in such a case, district 10 located in CCR Region consist of the outliers. Postal District is important because they can account for different area of cost price in a case when CCR, RCR or OCR is too generalized.
 
-# 3 & 4. Exploratory Data Analysis and cleaning of features and Feature Engineering
+### Type of Sale
+Most of the private residential properties is categorized under as resale
 
-- Few features were selected out to do some data exploration, we will use these features to predict the atrget variable.
-- Y feature is unit price per psf
+### Type
+The house type was also looked into whether it is a Terrace, Semi - Detached or Detached.
 
-There is a few features selected out from the dataframe to do data exploration
+### Tenure
+A data exploration was done on the Tenure and it shows that there were a total amount of 65 different objects in the tenure column. Data cleaning is required for tenure as this is an important feature for the prediction as tenure represent how long can the owner holds on to the property.
 
-1. Market Segment (CCR, RCR, OCR)
-Each house in different region shows a different pricing. However, for CCR region, the boxplot shows a greater pricing with a huge amount of outliers. Hence, dummfiying these feature is required.
 
-2. Postal District
-A feature check was done on the postal district and the outliers were detected in district 10 (supposedly the CCR region). This features have to be dummfied as well.
+## 3. Data Cleaning
 
-3. Tenure
-A feature check was done for tenure and the tenure column was in "object" format due to words inside the values. A cleaning was done for data using str.split().str[0] and [-1] was applied to move the str out to convert the value as an integer as well as deducting the amoutn of tenure left. This clean integer data is inserted back into the dataframe as an integer column. The pricing of the house prediction will be based on the integer amount.
+### Tenure
+Tenure was in the object format due to words and number values inside the data. Using a str split, we managed to convert the object to an integer value by using a simple addition and subtraction to obtain the remaining lease. Abnormally high integer (1 was at 9944 years) was replaced as 999 years to represent it under as freehold. The list was then inserted back into the dataframe as an integer column to do the ML prediction.
 
-The tenure was also split into 2 categories which is categorized under 0 - 99 years and freehold (>99 years) for the dataset. This will be explained more during the data modelling section
+### Removal of 5% from Dataset ( top 2.5 and lowest 2.5 percentile)
 
-![](https://github.com/huangjx1/Capstone-Final-/blob/main/img/house%20category.png)
+A removal of 5% of data from the dataset was carried out to remove outliers detected during data exploration. The houses were of exceptionally high prices incur by some factors such as heritage area or en bloc situations which caused the price to increase.
 
-4. Type of house
-The type of house was explored and it shows that the detached house category would fetch as higher price as compared to semi- detached and terrace. Dummifying of this feature
 
-5. Type of sale
-The type of sale categorized under resale is the highest. Hence, dummifiying of this feature is carried out.
+### Removal of 10% from Dataset ( top 5 and lowest 5 percentile)
 
-Additional cleaning
+The removal of 10% of data was further carried out to remove more outliers as the histogram plot still shows a certain amount of outliers in the 5% removal of data.
 
-5% of the dataframe was removed as there were outliers spotted causing skewness of the graph when the histogram is plotted. In total, 468 rows were removed from the dataframe.
+[image]
 
-The dataframe was saved to csv as merged_house_clean
+## 4. Data for modelling
 
-Next, all the features such as market segment, postal dsitrict, type and type sale were dummified and the dataframe was saved to csv as merged_house_data.
+The other features that was not dropped was dummified so that it can be used to the prediction.
 
+The data used for modelling will be merged_house_data :5 % removal of data
+& merged_house_10: 10% removal of Data
 
-# 5.1 Modelling for merged_house_data (5% reduction of outliers)
 
-### 5.1a. Linear Regression was carried out with standard scaler being applied
 
-There were no overfitting from the train and test score from linear regression with score 0.835 and 0.833 respectively. However, the RMS of the prediction is at $942134. Hence, we will look into optuna (XGboost).
+# Content for 2nd notebook
 
-*Note: A Lasso regression was carried out but since there were no overfitting at the start. There is not much differences whehn lasso is applied.
+1. Data Modelling for 5% data removed
+2. Data Modelling for 10% data removed
+3. Further actions of splitting dataset
+4. Data Modelling for house categorized under different tenure
+5. Conclusion and recommendations
 
-Check for linearity was carried out and the dataframe shows that as the houseprices increase, the results start to deviate from linear regression rules.
 
-### 5.1b. XGBoost without hyper parameter tuning
+## 1. Data Modelling for 5% data removed
 
-An overfitted model with score and test of 0.945 and 0.873 respectively.
+4 types of ML algorithms was applied to this model.
 
+- Linear Regression
+A slight over fit from linear regression model using the difference between the RMSE of the train and test set (6.21%).
 
-### 5.1c. XGboost using Optuna
+-Lasso Regression
+With the overfit, lasso regression was applied but the difference between RMSE of the train and test set shows almost no improvement (5.89%).
 
-With the Optuna hyperparameter tuning. The XGboost score for the train and test were 0.911 and 0.877 respectively. There is around a 3.5% of the overfitting.
+- XGBoost and RandomForest Classfier
+Both tree algorithms shows over fitting. The difference between RMSE of the train and test is 20.11% and 25.39% respectively
 
-As mentioned in #3 and #4 "Tenure", the dataset was split into 2 set of data once belong to house categorized with 99 years and the other >99 years (also known as freehold).
 
+## 2. Data Modelling for 10% data removed
 
-# 5.21 Modelling for house (within 99 years)
+3 types of ML algorithms was applied to this model.
 
-A scatterplot was plotted out and we can see a co-relation of the overall price increases as the tenure increases.
+All 3 were overfitted. The table belows shows the results of 5% and 10% rmeoval of data.
 
-The data was reduced to all houses within the 99 years tenure. The dataset was saved to csv as merged_house99.
+| Data Type | RMSE (%) |
+| --- | --- |
+| Linear Regression with 5% removed| 6.21% |
+| Lasso Regression with 5% removed| 5.89% |
+| XGBoost with 5% removed| 20.11% |
+| Random Forest Regressor 5% removed| 25.39%|
+| Linear Regression with 10% removed| 7.39% |
+| Lasso Regression with 10% removed| 22.91% |
+| Random Forest Regressor 10% removed| 21.08%|
 
-![](https://github.com/huangjx1/Capstone-Final-/blob/main/img/99%20years.png)
 
-### 5.21a Linear regression (for merged_house99)
+## 3. Further actions of splitting dataset
 
-The train and test results of linear regression were 0.931 and 0.874 respectively. This indicate an overfitting of linear regression.
+The tenure was splitted into 2 category as <=99years and >99 years because of a 99 years lease and freehold category under the holding of property.
 
+The data was split into 2 category of data using the tenure. The reason for this split is because of the extreme ends of tenurethat was oberserved during the data exploration.
 
-### 5.21b. XGboost using Optuna
+[image]
 
-The train and test results of XGboost were 0.967 and 0.919. This still indicates an overfitting.
 
+99year lease -> dataset is named as merged_house99
+freeholding -> dataset is named as freehold
 
-# 5.22 Modelling for house (freehold)
+## 4. Data Modelling for house categorized under different tenure
 
-Another dataset was split out within the > 99 years and the dataset was saved to csv as freehold. However, we can see that this dataframe holds 7900 rows which may implies that the XGboost will be overfit again.
+| Data Type | RMSE (%) |
+| --- | --- |
+| Linear Regression with houses tenure <=99years| 100% |
+| XGBoost with 5% removed with houses tenure <=99years| 15.7% |
+| Random Forest with 5% removed with houses tenure <=99years| 30.17% |
+| Linear Regression for freehold|1.67% |
+| XGBoost with 10% removed for freehold| 15.7% |
 
-![](https://github.com/huangjx1/Capstone-Final-/blob/main/img/freehold.png)
 
-### 5.22a Linear regression (freehold)
+## 5. Conclusion and recommendations
 
-There were no overfitting from the train and test score from linear regression with score 0.838 and 0.837 respectively. 
-The RMS is $921233 which is very close to the merged_house_data RMS of $942134.
+It was observed that the tree algorithms applied was not suitable for this dataset. However, our linear regression model was able to capture a none overfitted model for houses which is categorized as freehold with 1.67% RMSE.
 
-### 5.22b XGboost using optuna
+The RMSE is chosen as our main metrics because it punishes predicted value that has a greater difference the actual value. This is imporant for us as we do not want to undervalue or overvalue a property unit. The RMSE also gives us a better intution of the error which is the target variable (price). This will tell us how far off the predicted and the actual value are.
 
-Using optuna as hyperparamter tuning. The XGboost score for train and test is 0.904 and 0.861. This is very closely related to 0.911 and 0.877 from #5.1c.
+For the 99 years lease category, we are unable to get an accurate view over it as the RMSE error is abnormal. This could be due to the small dataset extracted out from the actual data. Furthermore, the 99 years lease fall under the same category as HDB estate. Therefore, this could be a reason why the private residential area does not have a sufficient data for the 99 years. As such, the dataset cannot capture the true releationship from the actual and predicted prices.
 
-
-## As the models are overfitted, a further reduction on dataset was done removing outliers at 10%, 5% from top and 5% from the bottom.
-
-From the Cleaning of Dataset notebook. merged_house_data was further reduced to 8753 rows as saved as csv merged_house_10
-
-Compare 2 histogram from 5% and 10%
-
-![](https://github.com/huangjx1/Capstone-Final-/blob/main/img/5%25%20reduction.png)
-![](https://github.com/huangjx1/Capstone-Final-/blob/main/img/10%25%20reduction.png)
-
-We can see from the histogram as there were lesser outliers from the second image with 10% reduction.
-
-
-# 6.1 Modelling for merged_house_10 (10% reduction)
-
-### 6.1a. Linear Regression was carried out with standard scaler being applied
-
-Linear Regression shows a train and test score of 0.796 and 0.785 with no overfitting.
-
-### 6.1b XGboost using optuna
-
-Using optuna as hyperparamter tuning. The XGboost score for train and test is 0.880 and 0.842. This is a slight overfit with RMS of $613257
-
-
-
-# 6.21 Modelling for house (within 99 years)
-
-
-### 6.21a Linear regression was carried out with standard scaler being applied
-
-
-
-### 6.21b XGboost using optuna
-
-Using optuna as hyperparameter tuning. The XGboost has a train and test score of 0.960 and 0.950 respectively. This shows that there is no overfitting. The RMS error is significantly reduced to $246307
-
-## IS there a data leakage?
-
-
-# 6.22 Modelling for house (freehold)
-
-### 6.22a Linear regression was carried out with standard scaler being applied
-
-Linear Regression shows a train and test score of 0.801 and 0.814 with no overfitting.
-
-
-### 6.21b XGboost using optuna
-
-Using optuna as hyperparamter tuning. The XGboost score for train and test is 0.893 and 0.835 respectively. This is an overfitting with RMS of $581159.
-
-
-# Conclusion
-
-In conclusion, there is overfitting on the freehold apartment. This maybe due to "tenure" that may not be a main factor and the location might be a deciding factor for freehold apartment. We can attempt to look into the location wise of the freehold apartment beside its district.
-
+In additional for 99 years lease category, it would be more logical or objective if it is compared to the HDB estate as the tenure will fall under the same category.
